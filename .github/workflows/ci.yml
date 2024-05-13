@@ -1,17 +1,26 @@
 name: Build and Push Docker Image to Docker Hub
 
-on: push
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   build:
-    - name: Login DockerHub
-      env:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    runs-on: ubuntu-latest
 
-    - name: Build the Docker image
-      run: docker build -t fulkiaaa/cicdpipeline:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Push to DockerHub
-      run: docker push fulkiaaa/cicdpipeline:latest
-    
+      - name: Login to DockerHub
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - name: Build the Docker image
+        run: docker build -t fulkiaaa/cicdpipeline:latest .
+
+      - name: Push to DockerHub
+        run: docker push fulkiaaa/cicdpipeline:latest
