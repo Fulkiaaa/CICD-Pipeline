@@ -13,9 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Copy Dockerfile to working directory
-        run: cp DockerFile .
-
       - name: Login to DockerHub
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
