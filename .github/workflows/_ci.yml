@@ -21,8 +21,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: List files in workspace
+        run: ls -la
+
       - name: Build Docker image
         run: |
+          ls -la    # Check if Dockerfile is present in the current directory
           docker build -t fulkiaaa/cicdpipeline:latest .
 
       - name: Log into DockerHub
