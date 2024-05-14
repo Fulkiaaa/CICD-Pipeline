@@ -1,0 +1,32 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - name: Pull Docker image
+        run: docker pull fulkiaaa/cicdpipeline:latest
+
+      - name: Stop previous container (if exists)
+        run: docker stop cicdpipeline || true
+
+      - name: Remove previous container (if exists)
+        run: docker rm cicdpipeline || true
+
+      - name: Run Docker container
+        run: docker run -d --name cicdpipeline -p 8080:80 fulkiaaa/cicdpipeline:latest
