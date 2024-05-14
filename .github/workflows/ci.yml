@@ -15,9 +15,9 @@ jobs:
 
       - name: install dependencies
         run: npm install
-        when: on_success
 
       - name: test unit
+        needs: install dependencies
         run: npm test
 
       - name: Login to DockerHub
