@@ -18,7 +18,7 @@ jobs:
       #   run: npm install
 
       - name: test unit
-        if: steps.npm_install.outcome == 'success'
+        # if: steps.npm_install.outcome == 'success'
         run: npm test
 
       - name: Login to DockerHub
