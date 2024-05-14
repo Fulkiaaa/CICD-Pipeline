@@ -15,13 +15,11 @@ jobs:
 
       - name: install dependencies
         id: npm_install
-        run: 
-          script: npm install
+        run: npm install
 
       - name: test unit
         if: steps.npm_install.outcome == 'success'
-        run: 
-          script: npm test
+        run: npm test
 
       - name: Login to DockerHub
         env:
