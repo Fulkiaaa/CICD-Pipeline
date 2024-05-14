@@ -13,9 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: install dependencies
-        id: npm_install
-        run: npm install
+      # - name: install dependencies
+      #   id: npm_install
+      #   run: npm install
 
       - name: test unit
         if: steps.npm_install.outcome == 'success'
