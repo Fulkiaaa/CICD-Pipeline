@@ -15,12 +15,16 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
-
+        with:
+          node-version: "14"
+          
       - name: install dependencies
-      - run: npm install
+        id: npm_install
+        run: npm install
 
       - name: test unit
-      - run: npm test
+        if: steps.npm_install.outcome == 'success'
+        run: npm test
 
       - name: Login to DockerHub
         env:
