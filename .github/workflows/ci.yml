@@ -14,12 +14,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: install dependencies
-        id: npm_install
         run: npm install
 
       - name: test unit
-        needs: npm_install
         run: npm test
+        needs: 
+          - job: install dependencies
 
       - name: Login to DockerHub
         env:
