@@ -3,7 +3,7 @@ name: Build and Push Docker Image to Docker Hub
 on:
   push:
     branches:
-      - alexandre-test
+      - main
 
 jobs:
   build:
@@ -13,10 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: installe dépendance
+      - name: Installioon of dependencies
         run: npm install
 
-      - name: test unitaire
+      - name: Run test
         run: npm test
 
       - name: Login to DockerHub
