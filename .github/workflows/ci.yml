@@ -13,10 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: installe dépendance
+      - name: install dependencies
         run: npm install
 
-      - name: test unitaire
+      - name: test unit
         run: npm test
 
       - name: Login to DockerHub
