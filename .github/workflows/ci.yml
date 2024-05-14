@@ -15,6 +15,7 @@ jobs:
 
       - name: install dependencies
         run: npm install
+        when: on_success
 
       - name: test unit
         run: npm test
