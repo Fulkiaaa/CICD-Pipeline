@@ -18,7 +18,8 @@ jobs:
 
       - name: test unit
         run: npm test
-        dependsOn: ['install dependencies']
+        dependsOn: 
+          - install dependencies
 
       - name: Login to DockerHub
         env:
