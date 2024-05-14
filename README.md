@@ -1,3 +1,5 @@
+NB :
+
 wsl ubuntu
 
 Actions runner init : 
