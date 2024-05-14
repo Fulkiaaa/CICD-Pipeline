@@ -3,7 +3,7 @@ name: Build and Push Docker Image to Docker Hub
 on:
   push:
     branches:
-      - main
+      - alexandre-test
 
 jobs:
   build:
@@ -13,10 +13,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Installation of dependencies
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+
+      - name: install dependencies
+        id: npm_install
         run: npm install
 
-      - name: Run test
+      - name: test unit
+        if: steps.npm_install.outcome == 'success'
         run: npm test
 
       - name: Login to DockerHub
