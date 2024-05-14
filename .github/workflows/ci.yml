@@ -13,8 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: installe dépendance
         run: npm install
-        
+
       - uses: actions/checkout@v1
       - name: Run Jest
         uses: fulkiaaa/jest-action@1.0.3
